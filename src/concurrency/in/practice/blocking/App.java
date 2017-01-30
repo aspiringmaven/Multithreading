@@ -12,7 +12,7 @@ public class App {
 	public static final int SIZE = 10;
 
 	public static void main(String[] args) {
-		PriorityBlockingQueue<Process> queue = new PriorityBlockingQueue<>(App.SIZE);
+		PriorityBlockingQueue<Process> queue = new PriorityBlockingQueue<Process>(App.SIZE);
 		
 		ExecutorService executorService = Executors.newFixedThreadPool(3);
 		
