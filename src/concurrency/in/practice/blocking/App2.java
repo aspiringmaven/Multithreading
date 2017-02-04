@@ -17,7 +17,7 @@ public class App2 {
 	
 	public static void main(String[] args) {
 		List<Integer> list = new LinkedList<Integer>();
-		ExecutorService executorService = Executors.newFixedThreadPool(2);
+		ExecutorService executorService = Executors.newFixedThreadPool(3);
 		executorService.submit(new ProducerJob(list));
 		executorService.submit(new ConsumerJob(list));
 		executorService.shutdown();
@@ -54,16 +54,16 @@ class ProducerJob implements Runnable {
 					int put = new Random().nextInt(100);
 					System.out.println("Prodecer >> " + put);
 					queue.add(put);
-					try {
-						TimeUnit.SECONDS.sleep(1);
-						queue.notifyAll();
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					
+					queue.notify();
 				} 
 				
 			}
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 		}
 	}
 
@@ -103,17 +103,16 @@ class ConsumerJob implements Runnable{
 				if(!queue.isEmpty()) {
 					int pop = queue.remove(0);
 					System.out.println("Consumer >>>> "+pop);
-					try {
-						TimeUnit.SECONDS.sleep(1);
-						queue.notifyAll();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					queue.notify();
 					
 				}
 				
 				
+			}
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 		
