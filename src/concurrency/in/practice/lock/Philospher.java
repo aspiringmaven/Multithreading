@@ -45,14 +45,11 @@ public class Philospher implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-			try {			
-				boolean aquireLeft = leftFork.tryLock();
-				
-				if(aquireLeft) {
-					boolean aquireRight = rightFork.tryLock();
-					if(aquireRight) {
+			try {	
+				if(leftFork.tryLock()) {
+					if(rightFork.tryLock()) {
 						try {
-							System.out.println("Philospher " + name  + " Eating.......................!!");
+							System.out.println("Philospher " + name  + " Eating............!!");
 							TimeUnit.SECONDS.sleep(1);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
