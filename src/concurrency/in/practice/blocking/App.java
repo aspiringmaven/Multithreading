@@ -110,7 +110,7 @@ class Process implements Comparable<Process> {
 
 	@Override
 	public int compareTo(Process process) {
-		return process.getPriority() - this.getPriority(); //highest Priority First
+		return this.getPriority()-  process.getPriority() ; //lowest Priority First
 	}
 
 	public int getPriority() {

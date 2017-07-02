@@ -13,7 +13,7 @@ public class App {
 	}
 
 	public static void main(String[] args) {
-		hang();
+		logic1();
 		System.out.println("DOne!");
 
 	}
@@ -84,7 +84,6 @@ class Cab implements Runnable {
 		try {
 			TimeUnit.SECONDS.sleep(4);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("Cab Running..");

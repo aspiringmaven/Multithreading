@@ -16,7 +16,7 @@ public class App {
 	}
 
 	public static void driver() {
-		Semaphore semaphore = new Semaphore(3);
+		Semaphore semaphore = new Semaphore(1);
 		
 		for(int i=0;i<5;i++) {
 			new Thread(new Book(semaphore)).start();
